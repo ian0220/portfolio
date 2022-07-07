@@ -1,5 +1,5 @@
 playercontrol
-```csharp
+```cs
 public class CarController : MonoBehaviour
 {
     // https://youtu.be/cqATTzJmFDY is used to make this script
