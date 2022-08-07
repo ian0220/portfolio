@@ -59,22 +59,14 @@ public class Gamemanger : MonoBehaviour
 
     void Start()
     {
-        m_WhatEmonion = WhatEmonion.Angry;
-        ResetPerson();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-
-        }      
+        m_WhatEmonion = WhatEmonion.Angry; 
+        ResetPerson(); // person is the character you have to look at
     }
 
     public void ResetPerson()
     {
-        m_WhatEmonion = (WhatEmonion)Random.Range(0, 6);
+        // here I set the enum random voor a emosion that will be genarated
+        m_WhatEmonion = (WhatEmonion)Random.Range(0, 6); 
         Destroy(m_usingBody);
         Destroy(m_usingClothes);
         Destroy(m_usingFace);
@@ -86,9 +78,12 @@ public class Gamemanger : MonoBehaviour
     private void IsSpawning()
     {
         int _randomBody = Random.Range(0, m_bodies.Length  );
+        // spawn the body that you wil see
         m_usingBody = Instantiate(m_bodies[_randomBody], m_postionBody, Quaternion.identity);
-        m_usingBody.transform.SetParent(m_bodyParent.transform);
+        // place it under a parent so it had the right lajer order 
         if(_randomBody == 0)
+        // choos what for clohts it has 
+        m_usingBody.transform.SetParent(m_bodyParent.transform); 
         {
              m_randomClothes = Random.Range(0, 4);
         }
@@ -114,7 +109,8 @@ public class Gamemanger : MonoBehaviour
         }
 
         m_usingClothes = Instantiate(m_clothes[m_randomClothes], m_clothesPostion, Quaternion.identity, m_clothesParent.transform);
-
+        
+        // the face wil spawn with de enum(m_WhatEmonion) is
         m_usingFace = Instantiate(m_faces[((int)m_WhatEmonion)], m_postionFace, Quaternion.identity);
         m_usingFace.transform.SetParent(m_parentFace.transform) ;
 
