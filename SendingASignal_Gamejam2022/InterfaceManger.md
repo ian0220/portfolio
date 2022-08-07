@@ -1,3 +1,6 @@
+
+```css
+
 using UnityEngine.UI;
 using TMPro;
 
@@ -222,3 +225,4 @@ public class InterFaceManger : MonoBehaviour
         Application.Quit();
     }
 }
+```
