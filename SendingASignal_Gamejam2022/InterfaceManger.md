@@ -6,7 +6,7 @@ using TMPro;
 
 public class InterFaceManger : MonoBehaviour
 {
-    // Start is called before the first frame update
+   
     [SerializeField]
     private GameObject[] m_emotionsButtons;
     [SerializeField]
@@ -71,13 +71,9 @@ public class InterFaceManger : MonoBehaviour
         m_pointText.SetText(m_point.ToString());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     private int Emotions(int _doNot)
     {
+        // wil choiose a random emtion that is not the corect 1 
         int _randomnumber = Random.Range(0, m_emotionsButtons.Length);
 
         if(m_chosenEmotionNumber.Contains(_randomnumber))
@@ -93,7 +89,8 @@ public class InterFaceManger : MonoBehaviour
 
     
     public void CorrectButton(WhatEmonion _whatEmontion)
-    {        
+    {   
+        // als die goed is laat die een briegf vallen en je krijgt punt er bij if it is the corect buton let a card drop down and give points
         m_ButtonEmonin = _whatEmontion;
         if(m_whatEmonion == m_ButtonEmonin)
         {
@@ -109,7 +106,8 @@ public class InterFaceManger : MonoBehaviour
              m_point--;        
         }
         m_pointText.SetText(m_point.ToString());
-
+        
+        // checks if you alry won so not reset for new round
         if(m_point >= m_winPoints)
         {
             m_winObject.SetActive(true);
@@ -141,7 +139,7 @@ public class InterFaceManger : MonoBehaviour
     }
 
     private Vector3 ButtenPlaceMent()
-    {
+    {//tels where the buton placement need to be
         int _randomNumber = Random.Range(0, 3);
 
         if(_randomNumber == 0 && !m_chosenEmotionPostion.Contains(0))
@@ -169,7 +167,7 @@ public class InterFaceManger : MonoBehaviour
     }
 
     public void SpawnButton()
-    {
+    {//place the buton and ask where it need to be placed
         m_whatEmonion = Gamemanger.M_Instance.m_WhatEmonion;
         m_ChosenEmotion.Add( Instantiate(m_emotionsButtons[((int)m_whatEmonion)], ButtenPlaceMent(), Quaternion.identity,m_parentButton.transform));
         m_chosenEmotionNumber.Add(((int)m_whatEmonion));
