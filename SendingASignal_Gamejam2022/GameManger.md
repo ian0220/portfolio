@@ -17,7 +17,8 @@ public class Gamemanger : MonoBehaviour
 
     [Header("clothes")]
     [SerializeField]
-    private GameObject[] m_clothes;// 0 tot 7 is angry 8 tot 11 is shy en 12 tot 17 is standing
+    // 0 tot 7 is angry 8 tot 11 is shy en 12 tot 17 is standing
+    private GameObject[] m_clothes;
     private GameObject m_usingClothes;
     [SerializeField]
     private Vector3 m_clothesPostion;
@@ -60,7 +61,8 @@ public class Gamemanger : MonoBehaviour
     void Start()
     {
         m_WhatEmonion = WhatEmonion.Angry; 
-        ResetPerson(); // person is the character you have to look at
+        // person is the character you have to look at
+        ResetPerson(); 
     }
 
     public void ResetPerson()
