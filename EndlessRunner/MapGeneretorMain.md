@@ -22,30 +22,30 @@ public class MapGeneretorMain : MonoBehaviour
     private ObjectPool m_currencyPool;
 
     private Position m_enumpostion;
-    // Start is called before the first frame update
+    
     void Start()
     {
         m_enemyPostionchoose = 0;
-        //Instantiate(m_floor, new Vector3(m_floor.transform.position.x + m_floor.GetComponent<MeshRenderer>().bounds.size.x, m_floor.transform.position.y, m_floor.transform.position.z), Quaternion.identity);
+        // spawn new floor
         for (int i = 0; i < m_aantal; i++)
         {
-            m_Lastspawned = Instantiate(Floor, new Vector3(Floor.transform.position.x + Floor.GetComponent<MeshRenderer>().bounds.size.x * i, Floor.transform.position.y, Floor.transform.position.z), Quaternion.identity);
+            m_Lastspawned = Instantiate(Floor, new Vector3(Floor.transform.position.x + Floor.GetComponent<MeshRenderer>().bounds.size.x *i, Floor.transform.position.y, Floor.transform.position.z), Quaternion.identity);
         }
     }
 
     public void nextspawn()
-    {   // spaned achter de achterste
+    {   // spawned floor to the back floor
         m_Lastspawned = Instantiate(Floor, new Vector3(m_Lastspawned.transform.position.x + m_Lastspawned.GetComponent<MeshRenderer>().bounds.size.x - 2, m_Lastspawned.transform.position.y, m_Lastspawned.transform.position.z), Quaternion.identity);
 
     }
 
     private void Block()
     {
-       
-        m_enemyPostionchoose = Random.Range(0, 3);  // random gemaakt om postie te bekijken
-        if(m_enemyPostionchoose == 2) // controleerd welke postion het is
+       // lookat for out of 3 postion and let a enemy spawn on 1 of the postions
+        m_enemyPostionchoose = Random.Range(0, 3);  
+        if(m_enemyPostionchoose == 2) 
         {
-            Vector3 _bovenPostion = new Vector3(40, 12, 0);  // zet hem op de postion waar die spanwend
+            Vector3 _bovenPostion = new Vector3(40, 12, 0);  
             m_enemypool.GetPooledObject(transform.position = _bovenPostion, transform.rotation, null);
         }
         else if(m_enemyPostionchoose == 1)
@@ -62,15 +62,15 @@ public class MapGeneretorMain : MonoBehaviour
 
      private void CurrencySpawner()
      {
-       
-        m_currenyPostionchoose = Random.Range(0, 3);  // random gemaakt om postie te bekijken
+        // lookat for out of 3 postion and let a currency spawn on 1 of the postions
+        m_currenyPostionchoose = Random.Range(0, 3); 
         if(m_currenyPostionchoose == m_enemyPostionchoose)
         {
             return;
         }
-        if(m_currenyPostionchoose == 2) // controleerd welke postion het is
+        if(m_currenyPostionchoose == 2) 
         {
-            Vector3 _bovenPostion = new Vector3(40, 12, 0);  // zet hem op de postion waar die spanwend
+            Vector3 _bovenPostion = new Vector3(40, 12, 0);  
             m_currencyPool.GetPooledObject(transform.position = _bovenPostion, transform.rotation, null);
         }
         else if(m_currenyPostionchoose == 1)
@@ -89,7 +89,7 @@ public class MapGeneretorMain : MonoBehaviour
     {
         m_timerenemyspawnen -= Time.deltaTime;
         m_timerCurrenySpawn -= Time.deltaTime;
-        if(m_timerenemyspawnen <= 0) // hier kijkt die of de secondes voor bij zijn en dat die dan 1 mag gaan spawnen
+        if(m_timerenemyspawnen <= 0) 
         {
             m_timerenemyspawnen = 1;
             Block();
@@ -103,7 +103,7 @@ public class MapGeneretorMain : MonoBehaviour
     }
 
     public void BackToObjectPoolEnemy()
-    {  // dit zet de objecten terug naar de object pool
+    {  // set the object of a objectpool back to the objectpool
         PoolItem _poolenemy = m_enemypool.GetComponent<PoolItem>();
         _poolenemy.ReturnToPool();
     }
