@@ -73,7 +73,7 @@ public class InterFaceManger : MonoBehaviour
 
     private int Emotions(int _doNot)
     {
-        // wil choiose a random emtion that is not the corect 1 
+        // wil choice a random emotion that is not the corect 1 
         int _randomnumber = Random.Range(0, m_emotionsButtons.Length);
 
         if(m_chosenEmotionNumber.Contains(_randomnumber))
